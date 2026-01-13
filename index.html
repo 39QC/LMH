@@ -83,7 +83,206 @@ questions.map((q,i)=>`
 </div>`).join("")
 );
 </script>
-
+<script>
+const typeDesc = {
+  SFAD: {
+    title: "기준형 해결사",
+    desc: "규정·기준·속도를 균형 있게 중시하는 실행형 정비사",
+    strong: "위기 대응 빠름, 기준 기반 판단 명확",
+    caution: "독단적으로 보일 수 있음"
+  },
+  SFAH: {
+    title: "묵묵한 에이스",
+    desc: "기준은 철저히 지키지만 드러내지 않는 안정형",
+    strong: "실수 적음, 신뢰도 높음",
+    caution: "위험 신호를 혼자만 알고 넘길 수 있음"
+  },
+  SFRD: {
+    title: "팀 중심 실행가",
+    desc: "기준을 중시하며 즉시 공유하는 팀 플레이어",
+    strong: "사고 예방 능력 탁월",
+    caution: "결정이 느려질 수 있음"
+  },
+  SFRH: {
+    title: "안정형 조율자",
+    desc: "가장 교과서적인 안전 균형형",
+    strong: "사고 확률 낮음, 조직 안정성 기여",
+    caution: "긴급 상황에서 주저할 수 있음"
+  },
+  SCAD: {
+    title: "완벽주의 해결사",
+    desc: "기준·신중·자율을 모두 중시하는 고난도 정비 강자",
+    strong: "정확도 최고 수준",
+    caution: "일정 압박에 취약"
+  },
+  SCAH: {
+    title: "정비 교관형",
+    desc: "차분하고 꼼꼼한 교육형 정비사",
+    strong: "후임 교육 최적",
+    caution: "속도 요구 상황에서 스트레스 큼"
+  },
+  SCRD: {
+    title: "안전 관리자형",
+    desc: "확인·공유·기준을 중시하는 안전 중심형",
+    strong: "대형 사고 차단 능력",
+    caution: "느리다는 평가 받기 쉬움"
+  },
+  SCRH: {
+    title: "안전의 버팀목",
+    desc: "말없이 조직 안전을 떠받치는 숨은 핵심",
+    strong: "조직 안정성 최강",
+    caution: "공로가 잘 드러나지 않음"
+  },
+  IFAD: {
+    title: "베테랑 감각형",
+    desc: "직감과 속도로 위기를 돌파하는 경험형",
+    strong: "긴급 상황 판단 탁월",
+    caution: "규정 무시로 오해받을 수 있음"
+  },
+  IFAH: {
+    title: "현장 감각파",
+    desc: "느낌은 빠르나 표현은 조심스러운 타입",
+    strong: "작은 이상 조기 발견",
+    caution: "말 안 하면 사고로 이어질 수 있음"
+  },
+  IFRD: {
+    title: "직감 공유형",
+    desc: "느낌이 오면 바로 알리는 사고 예방자",
+    strong: "근접 사고 예방 최강",
+    caution: "설명 부족 시 설득력 약함"
+  },
+  IFRH: {
+    title: "분위기 감지자",
+    desc: "사람·상황 모두에 민감한 팀 센서",
+    strong: "팀 분위기 기반 사고 예방",
+    caution: "위험 표현 타이밍 놓칠 수 있음"
+  },
+  ICAD: {
+    title: "장인형 정비사",
+    desc: "직감과 신중을 겸비한 독립적 고수",
+    strong: "고난이도 작업 최강",
+    caution: "협업 부족 가능"
+  },
+  ICAH: {
+    title: "조용한 장인",
+    desc: "말보다 손이 먼저인 숙련형",
+    strong: "실수 거의 없음",
+    caution: "문제 공유 부족"
+  },
+  ICRD: {
+    title: "현장 리더형",
+    desc: "경험 기반 판단 + 공유 중심 리더",
+    strong: "팀 전체 안전 수준 상승",
+    caution: "후임 의존도 증가 가능"
+  },
+  ICRH: {
+    title: "팀의 안전 감정선",
+    desc: "팀 내 이상 분위기를 먼저 느끼는 타입",
+    strong: "갈등·사고 예방 능력",
+    caution: "결단이 늦어질 수 있음"
+  }
+};
+</script>
+<script>
+const typeDesc = {
+  SFAD: {
+    title: "기준형 해결사",
+    desc: "규정·기준·속도를 균형 있게 중시하는 실행형 정비사",
+    strong: "위기 대응 빠름, 기준 기반 판단 명확",
+    caution: "독단적으로 보일 수 있음"
+  },
+  SFAH: {
+    title: "묵묵한 에이스",
+    desc: "기준은 철저히 지키지만 드러내지 않는 안정형",
+    strong: "실수 적음, 신뢰도 높음",
+    caution: "위험 신호를 혼자만 알고 넘길 수 있음"
+  },
+  SFRD: {
+    title: "팀 중심 실행가",
+    desc: "기준을 중시하며 즉시 공유하는 팀 플레이어",
+    strong: "사고 예방 능력 탁월",
+    caution: "결정이 느려질 수 있음"
+  },
+  SFRH: {
+    title: "안정형 조율자",
+    desc: "가장 교과서적인 안전 균형형",
+    strong: "사고 확률 낮음, 조직 안정성 기여",
+    caution: "긴급 상황에서 주저할 수 있음"
+  },
+  SCAD: {
+    title: "완벽주의 해결사",
+    desc: "기준·신중·자율을 모두 중시하는 고난도 정비 강자",
+    strong: "정확도 최고 수준",
+    caution: "일정 압박에 취약"
+  },
+  SCAH: {
+    title: "정비 교관형",
+    desc: "차분하고 꼼꼼한 교육형 정비사",
+    strong: "후임 교육 최적",
+    caution: "속도 요구 상황에서 스트레스 큼"
+  },
+  SCRD: {
+    title: "안전 관리자형",
+    desc: "확인·공유·기준을 중시하는 안전 중심형",
+    strong: "대형 사고 차단 능력",
+    caution: "느리다는 평가 받기 쉬움"
+  },
+  SCRH: {
+    title: "안전의 버팀목",
+    desc: "말없이 조직 안전을 떠받치는 숨은 핵심",
+    strong: "조직 안정성 최강",
+    caution: "공로가 잘 드러나지 않음"
+  },
+  IFAD: {
+    title: "베테랑 감각형",
+    desc: "직감과 속도로 위기를 돌파하는 경험형",
+    strong: "긴급 상황 판단 탁월",
+    caution: "규정 무시로 오해받을 수 있음"
+  },
+  IFAH: {
+    title: "현장 감각파",
+    desc: "느낌은 빠르나 표현은 조심스러운 타입",
+    strong: "작은 이상 조기 발견",
+    caution: "말 안 하면 사고로 이어질 수 있음"
+  },
+  IFRD: {
+    title: "직감 공유형",
+    desc: "느낌이 오면 바로 알리는 사고 예방자",
+    strong: "근접 사고 예방 최강",
+    caution: "설명 부족 시 설득력 약함"
+  },
+  IFRH: {
+    title: "분위기 감지자",
+    desc: "사람·상황 모두에 민감한 팀 센서",
+    strong: "팀 분위기 기반 사고 예방",
+    caution: "위험 표현 타이밍 놓칠 수 있음"
+  },
+  ICAD: {
+    title: "장인형 정비사",
+    desc: "직감과 신중을 겸비한 독립적 고수",
+    strong: "고난이도 작업 최강",
+    caution: "협업 부족 가능"
+  },
+  ICAH: {
+    title: "조용한 장인",
+    desc: "말보다 손이 먼저인 숙련형",
+    strong: "실수 거의 없음",
+    caution: "문제 공유 부족"
+  },
+  ICRD: {
+    title: "현장 리더형",
+    desc: "경험 기반 판단 + 공유 중심 리더",
+    strong: "팀 전체 안전 수준 상승",
+    caution: "후임 의존도 증가 가능"
+  },
+  ICRH: {
+    title: "팀의 안전 감정선",
+    desc: "팀 내 이상 분위기를 먼저 느끼는 타입",
+    strong: "갈등·사고 예방 능력",
+    caution: "결단이 늦어질 수 있음"
+  }
+};
+</script>
 <button type="button" onclick="calc()">결과 보기</button>
 </form>
 
@@ -112,6 +311,16 @@ function calc(){
   document.getElementById("result").style.display="block";
   document.getElementById("result").innerHTML =
     `<h2>당신의 유형: ${type}</h2><p>${desc[type]||"복합형 안전 정비사"}</p>`;
+  
+  const t = typeDesc[type];
+
+document.getElementById("result").style.display = "block";
+document.getElementById("result").innerHTML = `
+  <h2>당신의 유형: ${type}</h2>
+  <h3>${t.title}</h3>
+  <p><b>특징:</b> ${t.desc}</p>
+  <p><b>강점:</b> ${t.strong}</p>
+  <p><b>주의점:</b> ${t.caution}</p>`;
 }
 </script>
 
