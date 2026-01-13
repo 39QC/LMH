@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정비안전 MBTI 설문</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f4f6f8; margin:0; padding:20px; }
+.container { max-width:720px; margin:auto; background:#fff; padding:20px; border-radius:10px; }
+h1 { text-align:center; }
+.question { margin:18px 0; }
+button { width:100%; padding:14px; font-size:16px; background:#1976d2; color:#fff; border:none; border-radius:8px; }
+.result { margin-top:25px; padding:20px; background:#e3f2fd; border-radius:10px; }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>✈️ 정비안전 MBTI 설문</h1>
+<p style="text-align:center;">※ 성격이 아닌 <b>정비 중 안전 판단 성향</b> 테스트입니다.</p>
+
+<form id="mbtiForm">
+
+<script>
+const questions = [
+  ["정비 중 이상 징후 판단 기준은?", "S", "I"],
+  ["'이상 있음'을 느끼는 기준은?", "S", "I"],
+  ["후임이 이상하다고 말하면?", "S", "I"],
+  ["가장 신뢰하는 정보는?", "S", "I"],
+  ["이상 발견 시 먼저?", "S", "I"],
+
+  ["시간이 촉박할 때?", "F", "C"],
+  ["'일단 하자'에 대한 생각은?", "F", "C"],
+  ["작업 중 멈추는 기준은?", "F", "C"],
+  ["반복 작업 시 나는?", "F", "C"],
+  ["일정 지연 vs 추가 점검?", "F", "C"],
+
+  ["애매한 문제 발생 시?", "A", "R"],
+  ["선임이 없을 때?", "A", "R"],
+  ["중단 판단은?", "A", "R"],
+  ["문제 발생 시 먼저 드는 생각은?", "A", "R"],
+  ["실수 가능성 보이면?", "A", "R"],
+
+  ["선임 판단이 위험해 보이면?", "D", "H"],
+  ["작업 중 분위기 안 좋을 때?", "D", "H"],
+  ["위험 표현 방식은?", "D", "H"],
+  ["회의/브리핑에서?", "D", "H"],
+  ["갈등이 생기면?", "D", "H"]
+];
+
+const answers = [
+ ["매뉴얼·수치·기준값", "현장 감각·느낌"],
+ ["기준 초과", "찜찜함"],
+ ["수치·기록 확인", "느낌도 존중"],
+ ["체크리스트·이력", "경험에서 나온 감각"],
+ ["기준·규정 확인", "주변 상태 재확인"],
+
+ ["속도를 낸다", "확인을 줄이지 않는다"],
+ ["상황 따라 필요", "사고의 시작"],
+ ["문제 발생 시", "불안하면"],
+ ["점점 빨라진다", "항상 같은 속도"],
+ ["일정 지연", "추가 점검"],
+
+ ["내가 판단", "공유 후 결정"],
+ ["책임지고 결정", "연락해서 확인"],
+ ["내 판단이면 충분", "동의 필요"],
+ ["내가 해결", "일단 공유"],
+ ["바로 조치", "상황 공유"],
+
+ ["바로 말한다", "타이밍 본다"],
+ ["안전이 우선", "말로 악화될까 고민"],
+ ["짧고 명확", "완곡하게"],
+ ["생각나면 말함", "정리 후 말함"],
+ ["그래도 말함", "다른 방법 고민"]
+];
+
+document.write(
+questions.map((q,i)=>`
+<div class="question">
+<b>${i+1}. ${q[0]}</b><br>
+<label><input type="radio" name="q${i}" value="${q[1]}"> ${answers[i][0]}</label><br>
+<label><input type="radio" name="q${i}" value="${q[2]}"> ${answers[i][1]}</label>
+</div>`).join("")
+);
+</script>
+
+<button type="button" onclick="calc()">결과 보기</button>
+</form>
+
+<div id="result" class="result" style="display:none;"></div>
+</div>
+
+<script>
+function calc(){
+  let score = {S:0,I:0,F:0,C:0,A:0,R:0,D:0,H:0};
+  for(let i=0;i<20;i++){
+    let q=document.getElementsByName("q"+i);
+    for(let r of q){ if(r.checked) score[r.value]++; }
+  }
+
+  let type =
+    (score.S>=score.I?"S":"I") +
+    (score.F>=score.C?"F":"C") +
+    (score.A>=score.R?"A":"R") +
+    (score.D>=score.H?"D":"H");
+
+  const desc = {
+    SFAD:"기준형 해결사", SFRH:"안정형 조율자", SCRD:"안전 관리자형", ICRH:"팀의 안전 감정선",
+    IFAD:"베테랑 감각형", IFRD:"직감 공유형", ICAD:"장인형 정비사", ICRD:"현장 리더형"
+  };
+
+  document.getElementById("result").style.display="block";
+  document.getElementById("result").innerHTML =
+    `<h2>당신의 유형: ${type}</h2><p>${desc[type]||"복합형 안전 정비사"}</p>`;
+}
+</script>
+
+</body>
+</html>
